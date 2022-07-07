@@ -485,6 +485,10 @@ h1 {
   }
 }
 
+.deletext {
+  color: #d87355;
+}
+
 .list_footer {
   display: -webkit-box;
   display: -ms-flexbox;

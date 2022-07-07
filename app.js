@@ -282,6 +282,11 @@ list.addEventListener("click", function (e) {
   // e.preventDefault();
   //刪除
   if (e.target.nodeName === "A") {
+    let deletxt = "";
+
+    deletxt = ` <span class="deletext">刪除中請稍後...</span>`;
+    e.target.closest("li").children[0].innerHTML = deletxt;
+
     deleteTodo(e.target.dataset.id);
   }
   //修改
