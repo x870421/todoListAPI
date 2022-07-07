@@ -350,7 +350,7 @@ function deleAllDone(getTodo) {
   Swal.fire({
     title: "確定要刪除嗎?",
     text: "刪除後將不能復原!",
-    icon: "warning",
+    icon: "question",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
