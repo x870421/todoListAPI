@@ -9,6 +9,9 @@ const password2 = document.querySelector("#password2");
 
 const todoSection = document.querySelector(".todo");
 const todoNavUser = document.querySelector(".todo_nav-user");
+const empty = document.querySelector(".empty");
+const cardList = document.querySelector(".card_list");
+const todoNum = document.querySelector(".todoNum");
 
 let data = [];
 let newData = [];
@@ -84,20 +87,17 @@ function login(email, password) {
     });
 }
 
-const empty = document.querySelector(".empty");
-const cardList = document.querySelector(".card_list");
-const todoNum = document.querySelector(".todoNum");
 function getTodo() {
   axios
     .get(`${apiUrl}/todos`)
     .then((res) => {
+      //data為原始資料
       data = res.data.todos;
 
       num = data.filter((i) => i.completed_at === null).length;
       todoNum.textContent = num;
 
       //設定種類
-
       if (state == "all") {
         newData = data;
       } else if (state == "todo") {
@@ -247,18 +247,19 @@ $(".tab li").click(function (e) {
 });
 const list = document.querySelector(".list");
 
-function renderdata(data) {
+function renderdata(XData) {
+  //XData為變數，目的為語文中的data隔開
   let str = "";
-
-  if (data.length === 0 && state == "a11") {
+  if (data.length === 0) {
     empty.classList.remove("none");
     cardList.classList.add("none");
     return;
   }
+
   empty.classList.add("none");
   cardList.classList.remove("none");
 
-  data.forEach((value) => {
+  XData.forEach((value) => {
     let checkMark = "";
     if (value.completed_at !== null) {
       checkMark = "checked";
