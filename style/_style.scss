@@ -202,6 +202,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px;
 }
 .list {
   li {
@@ -231,8 +232,8 @@ h1 {
 
       @media (max-width: 575px) {
         opacity: 1;
-        width: 12px;
-        height: 12px;
+        width: 16px;
+        height: 16px;
         transform: scale(1);
       }
 
@@ -262,7 +263,7 @@ h1 {
   }
   @media (max-width: 575px) {
     opacity: 1;
-    font-size: 15px;
+    font-size: 18px;
     transform: scale(1);
   }
 }
