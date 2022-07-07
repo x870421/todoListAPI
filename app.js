@@ -346,22 +346,31 @@ function deleAllDone(getTodo) {
     confirmButtonText: "是!刪除他!",
   }).then((result) => {
     if (result.isConfirmed) {
+      //先取得資料庫的資料，計算已完成的事項的數目
       axios
         .get(`${apiUrl}/todos`)
         .then((res) => {
           data = res.data.todos;
-
           let delList = data.filter((i) => i.completed_at != null);
 
-          delList.forEach((i) => {
-            deleteTodo(i.id);
-          });
+          if (delList.length !== 0) {
+            //有已完成的項目
+            delList.forEach((i) => {
+              deleteTodo(i.id);
+            });
+            Swal.fire("你的文件已被刪除!", "", "success");
+          } else {
+            //沒有已完成的項目
+            Swal.fire(
+              "找不到文件!!!",
+              "你沒有已完成的項目，快去完成吧!",
+              "warning"
+            );
+          }
         })
         .catch((e) => {
           console.log(e);
         });
-
-      Swal.fire("你的文件已被刪除!", "", "success");
     }
   });
 }
