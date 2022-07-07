@@ -228,6 +228,10 @@ btnAdd.addEventListener("click", (e) => {
 });
 
 cardInput.addEventListener("keyup", (e) => {
+  if (cardInput.value.trim() === "") {
+    alert("請輸入代辦事項");
+    return;
+  }
   if (e.keyCode == "13") {
     addTodo(cardInput.value);
     cardInput.value = "";
