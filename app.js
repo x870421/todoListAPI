@@ -151,7 +151,7 @@ function updateTodo(todo, todoID) {
         content: todo,
       },
     })
-    .then((res) => getTodo())
+    .then((res) => {})
     .catch((error) => console.log(error.response));
 }
 
@@ -296,6 +296,9 @@ list.addEventListener("click", function (e) {
   else if (e.target.nodeName === "I") {
     Swal.fire({
       title: "更新你的代辦事項",
+      text: `修改前的項目：${
+        e.target.closest("li").children[0].children[1].textContent
+      }`,
       input: "text",
       inputValue: `${
         e.target.closest("li").children[0].children[1].textContent
@@ -306,6 +309,7 @@ list.addEventListener("click", function (e) {
         autocapitalize: "off",
       },
       showCancelButton: true,
+      cancelButtonText: "取消",
       confirmButtonText: "確認",
     })
       .then((result) => {
@@ -313,7 +317,14 @@ list.addEventListener("click", function (e) {
           alert("請輸入代辦事項");
           return;
         }
+        Swal.fire({
+          icon: "success",
+          title: "更改完成!",
+          text: `更改為：${result.value}`,
+        });
 
+        e.target.closest("li").children[0].children[1].textContent =
+          result.value;
         updateTodo(result.value, e.target.closest("li").dataset.id);
       })
       .catch((e) => {});
@@ -344,6 +355,7 @@ function deleAllDone(getTodo) {
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "是!刪除他!",
+    cancelButtonText: "取消",
   }).then((result) => {
     if (result.isConfirmed) {
       //先取得資料庫的資料，計算已完成的事項的數目
