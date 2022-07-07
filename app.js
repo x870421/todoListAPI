@@ -294,12 +294,15 @@ list.addEventListener("click", function (e) {
   }
   //修改
   else if (e.target.nodeName === "I") {
-    //如果狀態是chexkbox,變為text
-
     Swal.fire({
       title: "更新你的代辦事項",
       input: "text",
+      inputValue: `${
+        e.target.closest("li").children[0].children[1].textContent
+      }`,
+      focusConfirm: false,
       inputAttributes: {
+        onclick: "this.focus();this.select()",
         autocapitalize: "off",
       },
       showCancelButton: true,
