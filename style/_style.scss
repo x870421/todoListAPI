@@ -1,0 +1,497 @@
+@import url("https://fonts.googleapis.com/earlyaccess/notosanstc.css");
+@import url("https://fonts.googleapis.com/css?family=Baloo+Tamma+2:600, 700");
+
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+}
+$default: #ffd370;
+$dark: #333;
+$gray: #9f9a91;
+$light: #efefef;
+
+.yellow {
+  min-height: 100vh;
+  background: #eee;
+  color: $dark;
+  background-image: linear-gradient($default);
+  letter-spacing: 0.07em;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.todo {
+  min-height: 100vh;
+  background: #eee;
+  color: $dark;
+  background-image: linear-gradient(
+    174deg,
+    $default 2%,
+    $default 46%,
+    #ffffff 46%,
+    #ffffff 100%,
+    #e8e8e8 100%
+  );
+
+  letter-spacing: 0.07em;
+}
+
+h1 {
+  padding: 10px 20px;
+}
+.logo_lg {
+  width: 312px;
+  height: 47px;
+  display: block;
+  text-indent: 101%;
+  overflow: hidden;
+  white-space: nowrap;
+  background-image: url("../img/logo_lg.png");
+}
+
+@media (max-width: 768px) {
+  .logo_lg {
+    width: 250px;
+    height: 40px;
+    background-size: cover;
+    background-image: url("../img/logo.png");
+  }
+}
+.logo {
+  width: 250px;
+  height: 40px;
+  display: block;
+  text-indent: 101%;
+  overflow: hidden;
+  white-space: nowrap;
+  background-image: url("../img/logo.png");
+  background-size: cover;
+}
+
+.todo nav {
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.todo_nav {
+  display: flex;
+  align-items: center;
+  font-family: "Noto Sans TC";
+
+  li {
+    margin: 10px;
+  }
+}
+
+.todo_nav-logout {
+  cursor: pointer;
+  color: black;
+  &:hover {
+    color: gray;
+  }
+}
+
+@media (max-width: 576px) {
+  .todo_nav-user {
+    display: none;
+  }
+  .card_input {
+    width: 100%;
+  }
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  margin: 3rem auto 1.5rem auto;
+  padding: 0 12px;
+  width: 500px;
+  @media (max-width: 575px) {
+    margin-top: 1.5rem;
+    width: auto;
+  }
+}
+.card {
+  margin-bottom: 0.5rem;
+  max-width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+}
+.card_input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-size: 1.25rem;
+  padding-right: 1rem;
+  color: $dark;
+  &::placeholder {
+    color: $gray;
+  }
+}
+
+.input {
+  padding: 5px 4px 5px 1rem;
+  display: flex;
+}
+.btn_add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: $dark;
+  color: #fff;
+  font-size: 2rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s linear;
+  &:hover {
+    background-color: black;
+  }
+}
+
+// card_list
+.card_list {
+  padding: 0;
+}
+
+.tab {
+  display: flex;
+  text-align: center;
+  color: $gray;
+  font-size: 14px;
+  li {
+    padding: 1rem;
+    width: 100%;
+    border-bottom: 2px solid $light;
+    cursor: pointer;
+    transition: 0.5s ease;
+    &:hover {
+      background-color: $light;
+
+      color: $dark;
+      font-weight: bold;
+    }
+    &.active {
+      border-bottom: 2px solid $dark;
+      color: $dark;
+      font-weight: bold;
+    }
+  }
+}
+.cart_content {
+  padding: 0.5rem 1rem 1rem 1rem;
+  @media (max-width: 575px) {
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+  }
+}
+.charge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.list {
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding-right: 1rem;
+
+    @media (max-width: 575px) {
+      padding-right: 0;
+    }
+
+    a.delete {
+      margin-left: 20px;
+      opacity: 0;
+      color: $dark;
+      display: block;
+      width: 1.25rem;
+      height: 1.25rem;
+      background: #000;
+      background-image: url("../img/delebtn.jpg");
+      background-size: contain;
+      cursor: pointer;
+      transition: 0.5s ease;
+      transform: scale(0.8);
+
+      @media (max-width: 575px) {
+        opacity: 1;
+        width: 12px;
+        height: 12px;
+        transform: scale(1);
+      }
+
+      &:hover {
+        transform: scale(1);
+      }
+    }
+
+    &:hover {
+      a.delete,
+      .fa-pen {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.fa-pen {
+  transition: 0.5s ease;
+  cursor: pointer;
+  font-size: 1.5rem;
+  opacity: 0;
+  transform: scale(0.8);
+  text-align: center;
+  &:hover {
+    transform: scale(1);
+  }
+  @media (max-width: 575px) {
+    opacity: 1;
+    font-size: 15px;
+    transform: scale(1);
+  }
+}
+
+.list_footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem 1rem 0.5rem;
+  font-size: 14px;
+  a {
+    color: $gray;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: $dark;
+    }
+  }
+  @media (max-width: 575px) {
+    padding: 1.5rem 0 1rem 0.5rem;
+  }
+}
+
+.checkbox {
+  position: relative;
+  user-select: none;
+  width: 100%;
+  display: block;
+  padding-left: 44px;
+  cursor: pointer;
+  span {
+    display: block;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+    line-height: 1.5;
+    @media (max-width: 575px) {
+      padding-right: 1rem;
+    }
+  }
+  input[type="checkbox"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+
+  span::before {
+    content: "";
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%) scale(1);
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+    border: 1px solid $dark;
+    pointer-events: none;
+    transition: 0.3s ease;
+  }
+  span::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 27%;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 0.5rem;
+    border-radius: 1px;
+    border-bottom: 3px solid $default;
+    border-right: 3px solid $default;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.3s ease;
+  }
+  input:checked {
+    ~ span {
+      color: $gray;
+      text-decoration: line-through;
+    }
+    ~ span::before {
+      border-color: transparent;
+      transform: translateY(-50%) scale(0);
+    }
+    ~ span::after {
+      opacity: 1;
+    }
+  }
+}
+
+.enrollInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.enrollForm {
+  margin: 10px 0;
+  width: 350px;
+}
+.input {
+  letter-spacing: 3px;
+  margin: 10px 0;
+  border: 0;
+  outline: 0;
+  font-size: 1.25rem;
+  color: $dark;
+  border-radius: 8px;
+  width: 100%;
+  &::placeholder {
+    color: $gray;
+  }
+}
+
+.form_btn {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.enter_btn {
+  font-size: 24px;
+  background-color: #333333;
+  color: #fff;
+  font-weight: 700;
+  padding: 15px 48px;
+  margin: 20px 0;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  transition: all 0.3s linear;
+  &:hover {
+    background-color: black;
+  }
+}
+.toggle_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 40px;
+  font-weight: 700;
+  color: #333333;
+  padding: 0 2rem;
+  cursor: pointer;
+  position: relative;
+  border-radius: 2px;
+
+  &::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-top: 1px solid $default;
+    border-left: 1px solid $default;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.25s linear;
+    border-radius: 2px;
+  }
+  &::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-bottom: 1px solid $default;
+    border-right: 1px solid $default;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transition: all 0.25s linear;
+    border-radius: 2px;
+  }
+  &:hover::before {
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+  }
+  &:hover::after {
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+  }
+  &:hover::after,
+  &:hover::before {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .yellow {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .todoLogo {
+    padding: 10px 0;
+    img {
+      display: none;
+    }
+  }
+
+  label {
+    font-size: 1.5rem;
+  }
+
+  .enrollForm {
+    width: 80vw;
+  }
+
+  .enrollinput {
+    align-items: center;
+
+    font-size: 1.25rem;
+    padding: 6px;
+    width: 100%;
+    .fs-15 {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+.wrong {
+  color: #d87355;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: "Noto Sans TC";
+}
+
+@media (max-width: 768px) {
+  .wrong {
+    margin-left: 5%;
+  }
+}
