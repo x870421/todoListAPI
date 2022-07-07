@@ -138,7 +138,6 @@ function addTodo(content) {
       },
     })
     .then((res) => {
-      console.log(res.data);
       state = "all";
       getTodo();
     })
@@ -330,18 +329,32 @@ list.addEventListener("click", function (e) {
 });
 
 function deleAllDone(getTodo) {
-  axios
-    .get(`${apiUrl}/todos`)
-    .then((res) => {
-      data = res.data.todos;
+  Swal.fire({
+    title: "確定要刪除嗎?",
+    text: "刪除後將不能復原!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "是!刪除他!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios
+        .get(`${apiUrl}/todos`)
+        .then((res) => {
+          data = res.data.todos;
 
-      let delList = data.filter((i) => i.completed_at != null);
+          let delList = data.filter((i) => i.completed_at != null);
 
-      delList.forEach((i) => {
-        deleteTodo(i.id);
-      });
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+          delList.forEach((i) => {
+            deleteTodo(i.id);
+          });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      Swal.fire("你的文件已被刪除!", "", "success");
+    }
+  });
 }
